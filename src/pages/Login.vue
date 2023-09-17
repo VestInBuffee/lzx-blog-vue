@@ -3,7 +3,7 @@
     <div>
         <div class="container">
             <h1 class="loginTitle">
-                
+
             </h1>
             <!-- 登录注册 -->
             <div v-show="!err2005" class="">
@@ -33,7 +33,7 @@
                           v-model="password">
                     </el-input>
 
-                    <h3><a href="">忘记密码？</a></h3>
+                    <h3><a href="#">忘记密码？</a></h3>
                     <div class="lr-btn tcolors-bg" @click="gotoHome">登录</div>
                     <div class="otherLogin" >
                         <a href="javascript:void(0)"><i class="fa fa-fw fa-wechat"></i></a>
@@ -167,7 +167,7 @@ import {setToken} from '../utils/auth.js'
                         this.$router.push({path:'/'});
                     }
                 })
-      
+
             },
             registerEnterFun: function(e){
                 var keyCode = window.event? e.keyCode:e.which;

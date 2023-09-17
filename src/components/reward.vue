@@ -9,7 +9,7 @@
     <section>
       <div>
         <img
-          src="static/img/coffee.jpg"
+          src="static/img/coffee.gif"
           alt=""
           style="max-width: 20%"
           class="coffee"
@@ -17,7 +17,7 @@
       </div>
       <h1>赞赏说明：</h1>
       <p>
-        如果我的课程对你有所帮助，你可以请作者喝杯咖啡表示鼓励
+        如果我的博客对你有所帮助，或者你喜欢我的博客，你可以请我喝杯咖啡表示鼓励
         ☕️)请备注留下你的姓名/昵称方便我公布赞赏记录。
       </p>
       <hr />
@@ -33,7 +33,7 @@
               "
               :onerror="$store.state.errorImg"
             />
-            <span>微信扫一扫，请我喝杯咖啡</span>
+            <span>赞助我七牛云</span>
           </div>
         </el-col>
         <el-col :span="12" class="donate-item">
@@ -46,7 +46,7 @@
               "
               :onerror="$store.state.errorImg"
             />
-            <span style="padding-top: 14px">支付宝扫一扫，请我喝杯咖啡</span>
+            <span style="padding-top: 14px">赞助我阿里云</span>
           </div>
         </el-col>
       </el-row>
@@ -81,19 +81,19 @@ export default {
       tableData: [
         {
           //赞赏数据
-          "payTime":"2021-10-23",
-          "name":"智障少女欢乐多",
-          "money":"188"
+          "payTime":"1",
+          "name":"1",
+          "money":"1"
         },
         {
-          "payTime":"2021-10-28",
-          "name":"刺猬",
-          "money":"50"
+          "payTime":"2",
+          "name":"2",
+          "money":"2"
         },
         {
-          "payTime":"2021-11-03",
-          "name":"迅捷小鹿",
-          "money":"30"
+          "payTime":"3",
+          "name":"3",
+          "money":"3"
         },
       ],
     };
