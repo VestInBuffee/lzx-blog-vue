@@ -75,6 +75,12 @@
         </li>
       </ul>
     </section>
+    <section class="rs5">
+      <h2 class="ui label">标签</h2>
+      <div class="tag">
+        <a v-for="(item, index) in tagList" :key="'tagList' + index" ><span>{{item.name}}</span></a>
+      </div>
+    </section>
     <!-- 右侧上滑小图片 -->
     <div
       v-if="this.$store.state.themeObj.user_start != 0"
@@ -109,7 +115,9 @@
 
 
 <script>
+
 import { hotArticleList } from "../api/article";
+import { getTagList } from "../api/tag";
 export default {
   data() {
     //选项 / 数据
@@ -120,6 +128,7 @@ export default {
       going: false, //是否正在执行上滑动作
       browseList: "", //热门文章 浏览量最多
       artCommentList: "", //最新评论
+      tagList: "", //标签
       catchMeObj: {
         //个人信息
         git: "https://gitee.com",
@@ -157,6 +166,11 @@ export default {
         this.browseList = response;
       });
     },
+    getTagList() {
+      getTagList().then((response) => {
+        this.tagList = response;
+      })
+    }
   },
   components: {
     //定义组件
@@ -183,7 +197,8 @@ export default {
     };
     //查询浏览量最多的10篇文章数据
     this.getHotArticleList();
-
+    //查询标签
+    this.getTagList();
   },
 };
 </script>
@@ -374,6 +389,24 @@ export default {
 }
 .rightlistBox .rs4 li a:hover {
   color: #64609e;
+}
+.rightlistBox .rs5 div a {
+  margin: 7px 5px;
+  text-align: center;
+  display: inline-block;
+  position: relative;
+  color: rgba(0, 0, 0, 0.4);
+  background: #97dffd;
+  height: 20px;
+  transition: all 0.3s ease-in-out;
+}
+.rightlistBox .rs5 div a:hover{
+  background: #f4692c;
+}
+.rightlistBox .rs5 div a span {
+  text-decoration: none;
+  font-size: 16px;
+  font-style: normal;
 }
 
 /*回到顶部*/
