@@ -36,7 +36,9 @@
                     阅读全文>>
                 </a>
             </div>
-
+            <div class="tags">
+              <a v-for="(tag, tagIndex) in item.tagList" :key="'articleTagList' + tagIndex" ><span>{{tag.name}}</span></a>
+            </div>
         </el-col>
          <el-col class="viewmore">
             <a v-show="hasMore" class="tcolors-bg" href="javascript:void(0);" @click="addMoreFun">点击加载更多</a>
@@ -59,7 +61,8 @@ import {articleList} from '../api/article'
                     categoryId: 0
                 },
                 articleList:[],
-                hasMore:true
+                hasMore:true,
+
             }
         },
 
@@ -155,4 +158,27 @@ import {articleList} from '../api/article'
     /*.sharelistBox .viewmore a:hover,.s-item .viewdetail a:hover{
         background: #48456C;
     }*/
+.sharelistBox .s-item.tcommonBox .tags {
+  border-top: solid;
+  border-top-width: 1px;
+  border-top-color: lightgrey;
+}
+.sharelistBox .s-item.tcommonBox .tags a {
+  margin: 7px 5px;
+  text-align: center;
+  display: inline-block;
+  position: relative;
+  color: rgba(0, 0, 0, 0.4);
+  background: #97dffd;
+  height: 20px;
+  transition: all 0.3s ease-in-out;
+}
+.sharelistBox .s-item.tcommonBox .tags a:hover {
+  background: #f4692c;
+}
+.sharelistBox .s-item.tcommonBox .tags a span {
+  text-decoration: none;
+  font-size: 16px;
+  font-style: normal;
+}
 </style>
