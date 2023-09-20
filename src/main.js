@@ -21,3 +21,4 @@ new Vue({
   template: '<App/>',
   store
 })
+Vue.prototype.bus = new Vue()

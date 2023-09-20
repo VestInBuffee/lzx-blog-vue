@@ -78,7 +78,7 @@
     <section class="rs5">
       <h2 class="ui label">标签</h2>
       <div class="tag">
-        <a v-for="(item, index) in tagList" :key="'tagList' + index" ><span>{{item.name}}</span></a>
+        <a v-for="(item, index) in tagList" :key="'tagList' + index" @click="queryArticleByTag(item.id)" ><span>{{item.name}}</span></a>
       </div>
     </section>
     <!-- 右侧上滑小图片 -->
@@ -170,6 +170,9 @@ export default {
       getTagList().then((response) => {
         this.tagList = response;
       })
+    },
+    queryArticleByTag(tagId) {
+      this.bus.$emit("queryArticleByTagId", tagId)
     }
   },
   components: {

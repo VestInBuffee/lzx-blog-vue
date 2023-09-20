@@ -115,6 +115,13 @@ import {articleList} from '../api/article'
             // console.log(this.$route);
             var that = this;
             that.routeChange();
+        },
+        mounted() {
+          var that = this;
+          that.bus.$on("queryArticleByTagId", tagId => {
+            that.queryParams.tagId = tagId
+            that.showSearchShowList(true)
+          });
         }
     }
 </script>
