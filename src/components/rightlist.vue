@@ -172,6 +172,9 @@ export default {
       })
     },
     queryArticleByTag(tagId) {
+      this.$router.push({
+        path: "/Home"
+      });
       this.bus.$emit("queryArticleByTagId", tagId)
     }
   },
