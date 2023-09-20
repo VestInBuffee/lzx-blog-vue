@@ -15,6 +15,16 @@
 						<el-menu-item index="/Reward"><i class="fa fa-wa fa-cny"></i> 赞赏</el-menu-item>
 						<el-menu-item index="/Friendslink"><i class="fa fa-wa fa-users"></i>友链</el-menu-item>
 
+            <div class="searchArticle">
+              <input ref="userName"
+                        placeholder="请输入内容"
+                        name="userName"
+                        type="text"
+                        tabindex="1"
+                        auto-complete="off"/>
+              <div class="icon"><i class="fa fa-search"></i></div>
+            </div>
+
 						<div class="userInfo">
 							<div v-show="!haslogin" class="nologin">
 								<a href="javascript:void(0);" @click="logoinFun(1)">登录&nbsp;</a>|<a href="javascript:void(0);" @click="logoinFun(0)">&nbsp;注册</a>
@@ -347,6 +357,32 @@ export default {
 	/*border: 1px solid #333;*/
 	border-radius: 2px;
 	padding-right: 10px;
+}
+.headBox .searchArticle {
+  height: 100%;
+  line-height: 38px;
+  position: absolute;
+  right: 120px;
+  top: 0;
+  width: 160px;
+  background-color: rgba(40, 42, 44, 0.3);
+  border-color: rgba(40, 42, 44, 0.3);
+}
+.headBox .searchArticle input {
+  border: 0;
+  width: 130px;
+  display: inline-block;
+  height: 60%;
+  background-color: rgba(40, 42, 44, 0);
+  color: white;
+}
+.headBox .searchArticle input:focus {
+  border: 0;
+  outline: 0;
+}
+.headBox .searchArticle .icon {
+  display: inline-block;
+  color: white;
 }
 
 .headBox .userInfo {
