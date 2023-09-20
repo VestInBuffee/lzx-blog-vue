@@ -59,7 +59,8 @@ import {articleList} from '../api/article'
                     pageNum: 1,
                     pageSize: 10,
                     categoryId: 0,
-                    tagId: 0
+                    tagId: 0,
+                    queryContent: ""
                 },
                 articleList:[],
                 hasMore:true,
@@ -122,6 +123,10 @@ import {articleList} from '../api/article'
             that.queryParams.tagId = tagId
             that.showSearchShowList(true)
           });
+          that.bus.$on("queryArticleByContent", queryContent => {
+            that.queryParams.queryContent = queryContent
+            that.showSearchShowList(true)
+          })
         }
     }
 </script>

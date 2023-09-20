@@ -16,13 +16,18 @@
 						<el-menu-item index="/Friendslink"><i class="fa fa-wa fa-users"></i>友链</el-menu-item>
 
             <div class="searchArticle">
-              <input ref="userName"
-                        placeholder="请输入内容"
-                        name="userName"
-                        type="text"
-                        tabindex="1"
-                        auto-complete="off"/>
-              <div class="icon"><i class="fa fa-search"></i></div>
+              <input style="display: none">
+              <input
+                @keyup.enter="queryArticleByContent"
+                autofocus
+                ref="userName"
+                v-model="queryContent"
+                placeholder="请输入内容"
+                name="userName"
+                type="text"
+                tabindex="-1"
+                autocomplete="off"/>
+              <div class="icon" @click="queryArticleByContent"><i class="fa fa-search"></i></div>
             </div>
 
 						<div class="userInfo">
@@ -83,7 +88,8 @@ export default {
 			input: '', //input输入内容
 			headBg: 'url(static/img/headbg05.jpg)', //头部背景图
 			headTou: '', //头像
-			projectList: '' //项目列表
+			projectList: '', //项目列表
+      queryContent: '' //搜索框内容
 		}
 	},
 	watch: {
@@ -96,6 +102,12 @@ export default {
 		handleClose(key, keyPath) { //分组菜单关闭
 			// console.log(key, keyPath);
 		},
+    queryArticleByContent() {
+      this.$router.push({
+        path: "/Home"
+      });
+      this.bus.$emit("queryArticleByContent", this.queryContent);
+    },
 		searchChangeFun(e) { //input change 事件
 			// console.log(e)
 			if (this.input == '') {
@@ -383,6 +395,9 @@ export default {
 .headBox .searchArticle .icon {
   display: inline-block;
   color: white;
+}
+.headBox .searchArticle .icon:hover {
+  cursor: pointer;
 }
 
 .headBox .userInfo {
