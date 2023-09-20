@@ -188,6 +188,7 @@ import {articleList} from '../api/article'
 }
 .sharelistBox .s-item.tcommonBox .tags a:hover {
   background: #f4692c;
+  cursor: pointer;
 }
 .sharelistBox .s-item.tcommonBox .tags a span {
   text-decoration: none;

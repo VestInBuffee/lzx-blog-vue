@@ -405,6 +405,7 @@ export default {
 }
 .rightlistBox .rs5 div a:hover{
   background: #f4692c;
+  cursor: pointer;
 }
 .rightlistBox .rs5 div a span {
   text-decoration: none;

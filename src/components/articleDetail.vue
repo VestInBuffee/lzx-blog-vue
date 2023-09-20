@@ -40,6 +40,9 @@
                     </el-col>
                 </el-row>
             </div>
+            <div class="tags">
+                <a v-for="(tag, tagIndex) in detailObj.tagList" :key="'articleTagList' + tagIndex" :href="'#/Home?labelId=' + tag.id "><span>{{tag.name}}</span></a>
+            </div>
         </div>
 </template>
 
@@ -85,7 +88,7 @@ import { mavonEditor } from 'mavon-editor'
                 //获取详情接口
                 this.getArticleDetail()
                 updateViewCount(that.aid)
-            }
+            },
         },
         watch: {
            // 如果路由有变化，会再次执行该方法
@@ -284,7 +287,29 @@ import { mavonEditor } from 'mavon-editor'
 .donate-body .donate-item:nth-of-type(2) div{
     color:#00a0e9;
 }
-
+.detailBox.tcommonBox .tags{
+  border-top: solid;
+  border-top-width: 1px;
+  border-top-color: lightgrey;
+}
+.detailBox.tcommonBox .tags a{
+  margin: 7px 5px;
+  text-align: center;
+  display: inline-block;
+  position: relative;
+  color: rgba(0, 0, 0, 0.4);
+  background: #97dffd;
+  height: 20px;
+  transition: all 0.3s ease-in-out;
+}
+.detailBox.tcommonBox .tags a:hover{
+  background: #f4692c;
+}
+.detailBox.tcommonBox .tags a span{
+  text-decoration: none;
+  font-size: 16px;
+  font-style: normal;
+}
 .bd_weixin_popup{
     position: fixed!important;
 }
