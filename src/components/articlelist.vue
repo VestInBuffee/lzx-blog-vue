@@ -37,7 +37,7 @@
                 </a>
             </div>
             <div class="tags">
-              <a v-for="(tag, tagIndex) in item.tagList" :key="'articleTagList' + tagIndex" ><span>{{tag.name}}</span></a>
+              <a v-for="(tag, tagIndex) in item.tagList" :key="'articleTagList' + tagIndex" @click="tagClick(tag.id)"><span>{{tag.name}}</span></a>
             </div>
         </el-col>
          <el-col class="viewmore">
@@ -58,7 +58,8 @@ import {articleList} from '../api/article'
                 queryParams: {
                     pageNum: 1,
                     pageSize: 10,
-                    categoryId: 0
+                    categoryId: 0,
+                    tagId: 0
                 },
                 articleList:[],
                 hasMore:true,
@@ -67,6 +68,10 @@ import {articleList} from '../api/article'
         },
 
         methods: { //事件处理器
+            tagClick: function (tagId){
+              this.queryParams.tagId = tagId
+              this.showSearchShowList(true)
+            },
             showInitDate: function(oldDate,full){
                 return initDate(oldDate,full)
             },
@@ -94,6 +99,7 @@ import {articleList} from '../api/article'
             routeChange:function(){
                 var that = this;
                 this.queryParams.categoryId = (that.$route.query.classId==undefined?0:parseInt(that.$route.query.classId));//获取传参的classId
+                this.queryParams.tagId = (that.$route.query.labelId==undefined?0:parseInt(that.$route.query.labelId));//获取传参的classId
                 this.showSearchShowList(true);
             }
         },
