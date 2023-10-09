@@ -6,8 +6,8 @@
         <h3>网站地址: https://www.aaa.com </h3>
         <h3>网站描述: 一个由A字母组成的网站</h3>
         <h3>网站logo: https://www.aaa.com/1.png</h3>
+    </h1>
 
-</h1>
     <el-row>
         <el-col :span="12" class="tf-item" v-for="(item,index) in friendslink" :key="'f'+index">
             <a :href="item.address" target="_blank">
@@ -17,6 +17,7 @@
             </a>
         </el-col>
     </el-row>
+
 </div>
 </template>
 

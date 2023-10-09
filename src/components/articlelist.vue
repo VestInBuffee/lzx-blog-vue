@@ -120,10 +120,12 @@ import {articleList} from '../api/article'
         mounted() {
           var that = this;
           that.bus.$on("queryArticleByTagId", tagId => {
+            that.queryParams.pageNum = 1;
             that.queryParams.tagId = tagId
             that.showSearchShowList(true)
           });
           that.bus.$on("queryArticleByContent", queryContent => {
+            that.queryParams.pageNum = 1;
             that.queryParams.queryContent = queryContent
             that.showSearchShowList(true)
           })
