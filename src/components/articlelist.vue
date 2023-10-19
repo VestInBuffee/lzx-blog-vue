@@ -50,7 +50,8 @@
 <script>
 import {initDate} from '../utils/server.js'
 import {articleList} from '../api/article'
-    export default {
+
+export default {
         name:'Share',
         data() { //选项 / 数据
             return {
@@ -58,6 +59,7 @@ import {articleList} from '../api/article'
                 queryParams: {
                     pageNum: 1,
                     pageSize: 10,
+                    lastPageMaxArticleId: 0,
                     categoryId: 0,
                     tagId: 0,
                     queryContent: ""
@@ -76,9 +78,18 @@ import {articleList} from '../api/article'
             showInitDate: function(oldDate,full){
                 return initDate(oldDate,full)
             },
+            resetQueryParams: function (){
+              this.queryParams.queryContent = ""
+              this.queryParams.pageNum = 1
+              this.queryParams.lastPageMaxArticleId = 0
+              this.queryParams.categoryId = 0
+              this.queryParams.tagId = 0
+            },
             getList(){
                 articleList(this.queryParams).then((response)=>{
                     this.articleList = this.articleList.concat(response.rows)
+                    const idArr = response.rows.map(el => {return el.id})
+                    this.queryParams.lastPageMaxArticleId = Math.max.apply(null, idArr)
                     if(response.total<=this.articleList.length){
                         this.hasMore=false
                     }else{
@@ -99,9 +110,11 @@ import {articleList} from '../api/article'
             },
             routeChange:function(){
                 var that = this;
-                this.queryParams.categoryId = (that.$route.query.classId==undefined?0:parseInt(that.$route.query.classId));//获取传参的classId
-                this.queryParams.tagId = (that.$route.query.labelId==undefined?0:parseInt(that.$route.query.labelId));//获取传参的classId
-                this.showSearchShowList(true);
+                that.resetQueryParams();
+                that.queryParams.queryContent = (that.$route.query.content==undefined)?'':that.$route.query.content;
+                that.queryParams.categoryId = (that.$route.query.classId==undefined?0:parseInt(that.$route.query.classId));//获取传参的classId
+                that.queryParams.tagId = (that.$route.query.labelId==undefined?0:parseInt(that.$route.query.labelId));//获取传参的classId
+                that.showSearchShowList(true);
             }
         },
         components: { //定义组件
@@ -110,7 +123,7 @@ import {articleList} from '../api/article'
         watch: {
            // 如果路由有变化，会再次执行该方法
            '$route':'routeChange',
-           '$store.state.keywords':'routeChange'
+           // '$store.state.keywords':'routeChange',
          },
         created() { //生命周期函数
             // console.log(this.$route);
@@ -118,17 +131,17 @@ import {articleList} from '../api/article'
             that.routeChange();
         },
         mounted() {
-          var that = this;
-          that.bus.$on("queryArticleByTagId", tagId => {
-            that.queryParams.pageNum = 1;
-            that.queryParams.tagId = tagId
-            that.showSearchShowList(true)
-          });
-          that.bus.$on("queryArticleByContent", queryContent => {
-            that.queryParams.pageNum = 1;
-            that.queryParams.queryContent = queryContent
-            that.showSearchShowList(true)
-          })
+          // var that = this;
+          // that.bus.$on("queryArticleByTagId", tagId => {
+          //   that.resetQueryParams()
+          //   that.queryParams.tagId = tagId
+          //   that.showSearchShowList(true)
+          // });
+          // that.bus.$on("queryArticleByContent", queryContent => {
+          //   that.resetQueryParams()
+          //   that.queryParams.queryContent = queryContent
+          //   that.showSearchShowList(true)
+          // })
         }
     }
 </script>

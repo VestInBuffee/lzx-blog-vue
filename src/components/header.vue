@@ -104,9 +104,9 @@ export default {
 		},
     queryArticleByContent() {
       this.$router.push({
-        path: "/Home"
+        path: "/Home?content=" + this.queryContent
       });
-      this.bus.$emit("queryArticleByContent", this.queryContent);
+      // this.bus.$emit("queryArticleByContent", this.queryContent);
     },
 		searchChangeFun(e) { //input change 事件
 			// console.log(e)

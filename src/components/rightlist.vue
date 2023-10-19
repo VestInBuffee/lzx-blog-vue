@@ -173,9 +173,9 @@ export default {
     },
     queryArticleByTag(tagId) {
       this.$router.push({
-        path: "/Home"
+        path: "/Home?labelId=" + tagId
       });
-      this.bus.$emit("queryArticleByTagId", tagId)
+      // this.bus.$emit("queryArticleByTagId", tagId)
     }
   },
   components: {
