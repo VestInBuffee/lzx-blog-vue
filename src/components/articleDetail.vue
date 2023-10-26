@@ -73,6 +73,9 @@ import { mavonEditor } from 'mavon-editor'
                     this.detailObj.content = markdownIt.render(response.content);
                 })
             },
+            getHasLogin:function (){
+              this.hasLogin = this.$store.state.hasLogin
+            },
             routeChange:function(){
                 var that = this;
                 that.aid = that.$route.query.aid==undefined?1:parseInt(that.$route.query.aid);//获取传参的aid
@@ -92,14 +95,15 @@ import { mavonEditor } from 'mavon-editor'
         },
         watch: {
            // 如果路由有变化，会再次执行该方法
-           '$route':'routeChange'
+           // '$route':'routeChange',
+           // '$store.state.hasLogin':'getHasLogin'
          },
         components: { //定义组件
 
         },
         created() { //生命周期函数
             var that = this;
-
+            // this.getHasLogin()
             this.routeChange();
         },
 

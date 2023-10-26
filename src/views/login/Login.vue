@@ -6,7 +6,7 @@
 
       </h1>
       <!-- 登录注册 -->
-      <div v-show="!err2005" class="">
+      <div class="">
         <div v-if="login==1" class="loginBox">
           <div class="lr-title">
             <h1>登录</h1>
@@ -161,6 +161,8 @@ export default {
         setToken(response.token)
         // 存储用户信息
         localStorage.setItem("userInfo",JSON.stringify(response.userInfo))
+        this.$store.commit('hasLogin', true)
+
         if(localStorage.getItem('logUrl')){
           this.$router.push({path:localStorage.getItem('logUrl')});
         }else{

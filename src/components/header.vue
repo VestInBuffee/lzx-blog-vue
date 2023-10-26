@@ -157,6 +157,7 @@ export default {
 				logout().then((response)=>{
 					removeToken()
 					localStorage.removeItem('userInfo');
+          that.$store.commit('hasLogin', false);
 					that.haslogin = false;
 					window.location.reload();
 						that.$message({

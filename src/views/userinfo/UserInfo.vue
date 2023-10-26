@@ -1,7 +1,7 @@
 <!-- 用户中心 -->
 <template>
   <div>
-    <wbc-nav></wbc-nav>
+    <lzx-nav></lzx-nav>
     <div class="container">
       <div v-show="isEdit" class="tcommonBox">
         <header>
@@ -100,6 +100,7 @@ export default {
       isEdit: false,
       userInfo:{},//本地存储的用户信
       userInfoObj:'',//用户的信息
+      haslogin: false
     }
   },
   methods: { //事件处理器
@@ -136,6 +137,7 @@ export default {
 
       savaUserInfo(that.userInfoObj).then((response)=>{//保存信息接口，返回展示页
         that.$message.success( '保存成功！');
+        localStorage.setItem("userInfo",JSON.stringify(response.userInfo))
         that.isEdit = false;
         that.routeChange() ;
       })
@@ -158,15 +160,15 @@ export default {
     }
   },
   components: { //定义组件
-    'wbc-nav':header,
+    'lzx-nav':header,
   },
   watch: {
     // 如果路由有变化，会再次执行该方法
-    // '$route'() {
-    //   if(this.$route.name === 'UserInfo'){
-    //     this.routeChange()
-    //   }
-    // }
+    '$store.state.hasLogin'() {
+      if(this.$store.state.hasLogin){
+        this.routeChange()
+      }
+    }
   },
   created() { //生命周期函数
     this.routeChange();

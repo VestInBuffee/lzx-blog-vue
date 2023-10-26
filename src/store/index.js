@@ -6,6 +6,7 @@ Vue.use(Vuex)
 
 /** 状态定义 */
 export const state = {
+  hasLogin: !!localStorage.getItem('userInfo'),
   loading: false,
   themeObj: 0,//主题
   keywords:'',//关键词
@@ -15,4 +16,9 @@ export const state = {
 
 export default new Vuex.Store({
     state,
+    mutations:{
+      hasLogin(state, login){
+        state.hasLogin = login
+      }
+    }
 })
