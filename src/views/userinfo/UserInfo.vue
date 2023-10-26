@@ -162,11 +162,11 @@ export default {
   },
   watch: {
     // 如果路由有变化，会再次执行该方法
-    '$route'() {
-      if(this.$route.name === 'UserInfo'){
-        this.routeChange()
-      }
-    }
+    // '$route'() {
+    //   if(this.$route.name === 'UserInfo'){
+    //     this.routeChange()
+    //   }
+    // }
   },
   created() { //生命周期函数
     this.routeChange();

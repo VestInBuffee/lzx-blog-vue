@@ -37,7 +37,7 @@ export default {
         this.articleList = this.articleList.concat(response.rows)
         const idArr = response.rows.map(el => {return el.id})
         this.queryParams.lastPageMaxArticleId = Math.max.apply(null, idArr)
-        if(response.total<=this.articleList.length){
+        if(response.total<this.queryParams.pageSize){
           this.hasMore=false
         }else{
           this.hasMore=true
